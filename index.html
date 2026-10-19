@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Visual de CSS Flexbox</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #38bdf8;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            color: #f1f5f9;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card p.desc {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        /* Área contenedor flex */
+        .flex-box {
+            display: flex;
+            background-color: #0b1120;
+            border: 2px dashed #475569;
+            border-radius: 8px;
+            padding: 16px;
+            min-height: 110px;
+        }
+
+        /* Elementos hijos flex (items) */
+        .item {
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 15px;
+            padding: 16px 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .item:nth-child(2) {
+            background-color: #818cf8;
+        }
+
+        .item:nth-child(3) {
+            background-color: #f472b6;
+        }
+
+        .item:nth-child(4) {
+            background-color: #4ade80;
+        }
+
+        /* 1. Justify Content: Center */
+        .jc-center {
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* 2. Justify Content: Space Between */
+        .jc-between {
+            justify-content: space-between;
+        }
+
+        /* 3. Align Items: Center (con altura) */
+        .ai-center {
+            height: 160px;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* 4. Flex Direction: Column */
+        .flex-column {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* 5. Flex Wrap */
+        .flex-wrap {
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .flex-wrap .item {
+            width: 200px;
+        }
+
+        /* 6. El truco del centrado absoluto con Flexbox */
+        .centrado-perfecto {
+            height: 140px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        code {
+            background-color: #334155;
+            color: #38bdf8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Modelo de Caja Flexbox en CSS</h1>
+            <p>Guía práctica de las propiedades más importantes de <code>display: flex</code></p>
+        </header>
+
+        <!-- 1. Justify Content Center -->
+        <div class="card">
+            <h2>1. Centrar horizontalmente: <code>justify-content: center</code></h2>
+            <p class="desc">Alinea los elementos a lo largo del eje principal en el centro, con <code>gap: 15px</code> entre ellos.</p>
+            <div class="flex-box jc-center">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+            </div>
+        </div>
+
+        <!-- 2. Justify Content Space Between -->
+        <div class="card">
+            <h2>2. Distribuir espacio: <code>justify-content: space-between</code></h2>
+            <p class="desc">Separa los elementos dejando el primer item al inicio, el último al final y el resto distribuidos uniformemente.</p>
+            <div class="flex-box jc-between">
+                <div class="item">Inicio</div>
+                <div class="item">Centro</div>
+                <div class="item">Final</div>
+            </div>
+        </div>
+
+        <!-- 3. Align Items Center -->
+        <div class="card">
+            <h2>3. Centrar verticalmente: <code>align-items: center</code></h2>
+            <p class="desc">Alinea los elementos a lo largo del eje transversal (verticalmente dentro de la caja).</p>
+            <div class="flex-box ai-center">
+                <div class="item" style="height: 50px;">Bajo</div>
+                <div class="item" style="height: 100px;">Alto</div>
+                <div class="item" style="height: 70px;">Medio</div>
+            </div>
+        </div>
+
+        <!-- 4. Flex Direction Column -->
+        <div class="card">
+            <h2>4. Disposición en columna: <code>flex-direction: column</code></h2>
+            <p class="desc">Cambia el eje principal para que los elementos se apilen uno debajo del otro.</p>
+            <div class="flex-box flex-column">
+                <div class="item">Fila 1</div>
+                <div class="item">Fila 2</div>
+                <div class="item">Fila 3</div>
+            </div>
+        </div>
+
+        <!-- 5. Flex Wrap -->
+        <div class="card">
+            <h2>5. Salto de línea automático: <code>flex-wrap: wrap</code></h2>
+            <p class="desc">Permite que los elementos pasen a una segunda fila si no caben en el ancho de la pantalla.</p>
+            <div class="flex-box flex-wrap">
+                <div class="item">Caja 1</div>
+                <div class="item">Caja 2</div>
+                <div class="item">Caja 3</div>
+                <div class="item">Caja 4</div>
+            </div>
+        </div>
+
+        <!-- 6. El truco del centrado absoluto -->
+        <div class="card">
+            <h2>6. El famoso "Centrado Perfecto" con Flexbox</h2>
+            <p class="desc">La combinación más usada en desarrollo web: <code>justify-content: center; align-items: center;</code></p>
+            <div class="flex-box centrado-perfecto">
+                <div class="item" style="background-color: #f59e0b; color: #000;">
+                    🎯 ¡Centrado vertical y horizontalmente!
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
